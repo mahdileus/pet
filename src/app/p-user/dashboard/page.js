@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import UserInfoBox from "@/app/components/template/p-user/dashboard/UserInfoBox";
 import connectToDB from "@/configs/db";
 import { authUser } from "@/utils/auth-server";
