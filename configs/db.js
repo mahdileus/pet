@@ -1,20 +1,25 @@
 // configs/db.js
 import mongoose from "mongoose";
 
-export async function connectToDB() {
-  try {
-    // اگر اتصال برقرار است، دوباره وصل نشو
-    if (mongoose.connection.readyState === 1) {
-      return;
-    }
+let isConnected = false;
 
-    await mongoose.connect(process.env.MONGO_URL, {
-      dbName: "yourDbName", // اگر داری اضافه کن
+const connectToDB = async () => {
+  if (isConnected) {
+    return;
+  }
+
+  try {
+    const db = await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
 
-    console.log("✅ MongoDB Connected");
+    isConnected = db.connections[0].readyState === 1;
+    console.log("✅ Connected to MongoDB");
   } catch (error) {
     console.error("❌ MongoDB Connection Error:", error);
-    throw new Error("Error connecting to MongoDB");
+    throw new Error("Database connection failed");
   }
-}
+};
+
+export default connectToDB;
