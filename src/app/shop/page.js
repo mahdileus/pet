@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+// یا export const revalidate = 0
+
 import Footer from "@/app/components/module/footer/Footer";
 import Navbar from "@/app/components/module/navbar/Navbar";
 import ShapeTwo from "@/app/components/template/shape/Shape";
@@ -15,25 +18,26 @@ export default async function Product() {
     const products = await ProductModel.find({})
         .sort({ createdAt: -1 })
         .limit(8);
-    const safeProducts = (products || []).filter(product => product);
+
+    const safeProducts = products || [];
 
     return (
-        < div className=" font-yekan-bakh relative overflow-hidden">
+        <div className="font-yekan-bakh relative overflow-hidden">
             <ShapeTwo />
             <Navbar />
             <MainSlider />
             <ShopCategories />
-            <LatestProduct
-                products={JSON.parse(JSON.stringify(safeProducts))}
-            />
-            <MiddleSlider/>
-            <LatestProduct
-                products={JSON.parse(JSON.stringify(safeProducts))}
-            />
+
+            <LatestProduct products={JSON.parse(JSON.stringify(safeProducts))} />
+
+            <MiddleSlider />
+
+            <LatestProduct products={JSON.parse(JSON.stringify(safeProducts))} />
+
             <Banners />
-            <LatestProduct
-                products={JSON.parse(JSON.stringify(safeProducts))}
-            />
+
+            <LatestProduct products={JSON.parse(JSON.stringify(safeProducts))} />
+
             <Brands />
             <Footer />
         </div>
