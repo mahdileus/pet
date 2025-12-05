@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Footer from "@/app/components/module/footer/Footer";
 import Navbar from "@/app/components/module/navbar/Navbar";
 import ProductHeader from "@/app/components/template/product/ProductHeader";
