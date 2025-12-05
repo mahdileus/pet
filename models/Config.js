@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const configSchema = new mongoose.Schema(
+  {
+    key: { 
+      type: String, 
+      required: true, 
+      unique: true 
+    },
+    value: { 
+      type: mongoose.Schema.Types.Mixed, 
+      required: true 
+    },
+    description: { 
+      type: String, 
+      default: "" 
+    },
+  },
+  { timestamps: true }
+);
+
+const Config = mongoose.models.Config || mongoose.model("Config", configSchema);
+
+module.exports = Config;
