@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 
 import connectToDB from "@/configs/db";
 import ProductModel from "@/models/Product"
