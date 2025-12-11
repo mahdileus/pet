@@ -1,12 +1,12 @@
 "use client"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 export default function Slider() {
     return (
         <div className="w-full">
             <Swiper
-                modules={[Autoplay, Pagination]}
+                modules={[Autoplay]}
                 autoplay={{ delay: 2500 }}
                 pagination={{ clickable: true }}
                 loop

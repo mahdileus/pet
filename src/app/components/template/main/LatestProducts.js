@@ -15,13 +15,13 @@ export default function LatestProduct({ products }) {
 
         <div className="relative container mt-10">
             <div className="container flex items-center mb-4 gap-5" style={{ padding: 0 }}>
-                <span className="border border-green-200 rounded-full p-1.5 bg-green-100">
+                <span className="hidden md:block border border-green-200 rounded-full p-1.5 bg-green-100">
                     <IoPawSharp size={32} className="text-green-500 " />
 
                 </span>
                 {/* این کانتینر در وسط صفحه و همه چی داخلشه */}
                 <div className="container mx-auto flex items-center justify-between z-10 py-4" style={{ padding: 0 }}>
-                    <span className=" text-secondery text-2xl font-bold">
+                    <span className=" text-secondery text-xl md:text-2xl font-bold">
                         محصولات پت شاپ
                     </span>
 

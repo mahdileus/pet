@@ -21,12 +21,12 @@ export default function LatestArticles({ articles }) {
     return (
         <div className="relative container my-22">
             <div className="container flex items-center mb-4 gap-5" style={{ padding: 0 }}>
-                <span className="border border-green-200 rounded-full p-1.5 bg-green-100">
+                <span className="hidden md:block border border-green-200 rounded-full p-1.5 bg-green-100">
                     <BsFileRichtext size={32} className="text-green-500" />
                 </span>
 
                 <div className="container mx-auto flex items-center justify-between z-10 py-4" style={{ padding: 0 }}>
-                    <span className="text-secondery text-2xl font-bold">
+                    <span className="text-secondery text-xl md:text-2xl font-bold">
                         مقالات و دانستنی ها
                     </span>
 

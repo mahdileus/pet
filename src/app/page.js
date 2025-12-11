@@ -15,10 +15,18 @@ import Services from "./components/template/main/Services";
 import Shape from "./components/template/main/Shape";
 import LatestProduct from "./components/template/main/LatestProducts";
 import LatestArticles from "./components/template/main/LatestArticles";
+import { authUser } from "@/utils/auth-server";
 ;
 
 export default async function Home() {
   await connectToDB();
+  const user = await authUser();
+  let userName = null;
+
+  if (user && user.name) {
+    userName = user.name;
+  }
+
   const products = await ProductModel.find({})
     .sort({ createdAt: -1 })
     .limit(8);
@@ -32,7 +40,9 @@ export default async function Home() {
   return (
     <div className="font-yekan-bakh">
       <Shape />
-      <Navbar />
+      <Navbar isLogin={!!user}
+        userName={userName}
+      />
       <Herosection />
       <Services />
       <MedicineSevices />

@@ -2,11 +2,12 @@
 import Image from "next/image";
 import { LuMessageCircleMore, LuUserRound, LuClock } from "react-icons/lu";
 import { BsFileRichtext } from "react-icons/bs";
+import Link from "next/link";
 export default function ArticleCardBox({ article }) {
 
 
     return (
-        <div className="relative w-[560px] h-[410px] rounded-3xl overflow-hidden shadow-xl group ">
+        <div className="hidden md:block relative w-[560px] md:h-[410px] rounded-3xl overflow-hidden shadow-xl group ">
             {/* تصویر پس‌زمینه */}
             <Image
                 src={article.thumbnail}
@@ -25,10 +26,12 @@ export default function ArticleCardBox({ article }) {
                     <div className=" w-1/2">
 
                         <BsFileRichtext size={32} className="text-white mb-4 " />
+                        <Link href={`/articles/${article.slug}`}>
+                            <h3 className="text-2xl line-clamp-2 font-bold leading-tight mb-2 ">
+                                {article.title}
+                            </h3>
+                        </Link>
 
-                        <h3 className="text-2xl line-clamp-2 font-bold leading-tight mb-2 ">
-                            {article.title}
-                        </h3>
                     </div>
                     <div className="w-1/2">
                         <p className="text-sm text-gray-200 leading-relaxed mb-4 line-clamp-3 text-justify ">

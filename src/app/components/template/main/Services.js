@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 export default function Services() {
     const services = [
@@ -100,7 +102,7 @@ export default function Services() {
                             </div>
 
                             <Link href={item.link}>
-                                <h4 className="text-white text-center text-lg font-bold">{item.title}</h4>
+                                <h4 className="text-white text-center text-lg font-bold mt-4 md:mt-0">{item.title}</h4>
                             </Link>
                         </div>
 

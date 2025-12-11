@@ -1,8 +1,9 @@
+import Link from "next/link";
 import MegaMenu from "./megaMenu";
 import MobileHeader from "./MobileHeader";
 import Nav from "./Nav";
-
-export default function Navbar() {
+import { CiUser } from "react-icons/ci";
+export default function Navbar({ isLogin, userName }) {
     return (
         <div className="container mt-2 font-yekan-bakh">
 
@@ -108,17 +109,33 @@ export default function Navbar() {
                         <span className="grid place-items-center badge absolute text-white rounded-full top-[-6%] right-[2%]">3</span>
                     </div>
 
-                    <div className="btn grid place-items-center ">
-                        <a href="#" className=" bg-white text-nowrap rounded-full flex justify-center items-center p-1.5">
-                            <span>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M11.8445 21.6619C8.15273 21.6619 5 21.0874 5 18.7867C5 16.4859 8.13273 14.3619 11.8445 14.3619C15.5364 14.3619 18.6891 16.4653 18.6891 18.7661C18.6891 21.0659 15.5564 21.6619 11.8445 21.6619Z" stroke="#0F295D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M11.8372 11.1737C14.26 11.1737 16.2236 9.21002 16.2236 6.7873C16.2236 4.36457 14.26 2.40002 11.8372 2.40002C9.41452 2.40002 7.44998 4.36457 7.44998 6.7873C7.4418 9.20184 9.3918 11.1655 11.8063 11.1737C11.8172 11.1737 11.8272 11.1737 11.8372 11.1737Z" stroke="#0F295D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </span>
-                            <span className="hidden md:block">حساب کاربری</span>
+                    <div className="w-full grid place-items-center ">
 
-                        </a>
+                        {!isLogin ? (
+                            <Link
+                                href="/login-register"
+                                className="text-gray-700 bg-white font-light text-lg bg-light-blue p-2.5 rounded-2xl hidden md:flex justify-between items-center"
+                            >
+                                <CiUser className="text-gray-700" />
+                                <p className="text-sm font-medium lg:text-base">
+                                    ورود / ثبت‌نام
+                                </p>
+                            </Link>
+                        ) : (
+                            userName && (
+                                <Link
+                                    href="/p-user/dashboard"
+                                    className="text-gray-700 bg-white font-light text-lg bg-light-blue p-2.5 rounded-2xl hidden md:flex justify-between items-center"
+                                >
+                                    <CiUser className="text-gray-700" />
+                                    <p className="text-sm font-medium lg:text-base">
+                                        {userName}
+                                    </p>
+                                </Link>
+                            )
+                        )}
+
+
                     </div>
                 </div>
             </div>

@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link"
 import { HiOutlineArrowLongLeft } from "react-icons/hi2"
 export default function Ads() {
     return (
-        <div className="container my-22">
+        <div className="container my-22 hidden md:block">
             <div className="w-full h-40 flex items-center justify-center bg-linear-to-l from-primary via-[#a8767b] to-[#ffd400] rounded-4xl ">
                 <div className="flex justify-between items-center gap-10 ">
                     <div className="select-none">

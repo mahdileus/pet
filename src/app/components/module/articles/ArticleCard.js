@@ -3,9 +3,9 @@
 import { LuMessageCircleMore, LuUserRound, LuClock } from "react-icons/lu";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
-export default function ArticleCard({article}) {
+export default function ArticleCard({ article }) {
     return (
-        <div className="w-[320px] bg-white rounded-3xl px-6 py-4 border border-gray-200 leading-relaxed">
+        <div className="w-[340px] md:w-[320px] bg-white rounded-3xl px-6 py-4 border border-gray-200 leading-relaxed">
 
             {/* آمار بالا */}
             <div className="flex justify-between text-center text-xs mb-6 text-black">
@@ -39,9 +39,12 @@ export default function ArticleCard({article}) {
             </div>
 
             {/* تیتر */}
-            <h2 className="text-2xl font-extrabold text-right line-clamp-2 text-secondery leading-tight mb-4">
-                {article.title}
-            </h2>
+            <Link href={`/articles/${article.slug}`}>
+                <h2 className="text-2xl font-extrabold text-right line-clamp-2 text-secondery leading-tight mb-4">
+                    {article.title}
+                </h2>
+            </Link>
+
 
             {/* متن */}
             <p className="text-[15px] line-clamp-7 leading-7 text-secondery text-justify">
@@ -50,11 +53,11 @@ export default function ArticleCard({article}) {
             </p>
 
             {/* دکمه */}
-            <Link href={"/"} >
-            <div className="flex items-center gap-3 mt-3 justify-end text-green-500">
-                <h4>بیشتر بخوانید</h4>
-                <FaArrowLeft />
-            </div>
+            <Link href={`/articles/${article.slug}`} >
+                <div className="flex items-center gap-3 mt-3 justify-end text-green-500">
+                    <h4>بیشتر بخوانید</h4>
+                    <FaArrowLeft />
+                </div>
             </Link>
 
 

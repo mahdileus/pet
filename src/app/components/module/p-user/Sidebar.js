@@ -34,13 +34,13 @@ export default function Sidebar() {
     });
   };
   return (
-    <aside className="w-20 md:w-64 bg-white p-4 flex flex-col items-center gap-4 border-l border-secondery">
+    <aside className="w-20 md:w-64 bg-white p-4 flex flex-col items-center gap-4 border-l  border-secondery">
       <Link href="/" >
         <Image src={"/images/dog-face-svgrepo-com 1.png"} width={40} height={40} alt="logo" />
 
       </Link>
 
-      <nav className="flex flex-col justify-between h-full w-full text-sm mt-12 text-cream">
+      <nav className="flex flex-col justify-between rounded-t-full h-full w-full text-sm mt-12 text-cream">
         <div className="flex flex-col gap-4">
           <SidebarItem icon={<CiUser className="w-8 h-8" />} label="حساب کاربری" href="/p-user/dashboard" />
           <SidebarItem icon={<CiShoppingBasket className="w-8 h-8" />} label="سفارش های من" href="/p-user/courses" />
@@ -50,7 +50,7 @@ export default function Sidebar() {
           <SidebarItem icon={<CiChat2 className="w-8 h-8" />} label="نظرات من" href="/p-user/comments" />
         </div>
         <div className="flex flex-col gap-4">
-          <SidebarItem icon={<CiDiscount1 className="w-8 h-8" />} label="تخفیف های من" href="/p-user/accountdetails" />
+          <SidebarItem icon={<CiDiscount1 className="w-8 h-8" />} label="تخفیف های من" href="/p-user/discountes" />
           <div onClick={logoutHandler}>
             <SidebarItem
               icon={<CiLogout className="w-8 h-8" />}

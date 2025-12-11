@@ -72,7 +72,7 @@ export default function MegaMenu() {
 
   return (
     <div
-      className="relative group"
+      className="hidden md:relative group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -16,7 +16,7 @@ export default async function AdminDashboardLayout({ children }) {
   }
 
   return (
-    <div className="flex h-screen bg-cream text-primary">
+    <div className="flex h-screen bg-[url(/images/background-panel-3.png)] text-primary font-yekan-bakh">
       <Sidebar />
       <main className="flex-1 flex flex-col">
         <Topbar />

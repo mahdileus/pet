@@ -1,12 +1,10 @@
 "use client"
-import { CiHome, CiVideoOn, CiMicrophoneOn,CiDiscount1, CiFileOn, CiHeadphones, CiChat2, CiUser, CiLogout } from "react-icons/ci";
+import { CiDiscount1, CiShoppingBasket,CiBoxList,CiAt  , CiHeadphones, CiChat2, CiUser, CiLogout } from "react-icons/ci";
 import Image from "next/image";
 import SidebarItem from "./SidebarItem";
 import Link from "next/link";
 import swal from "sweetalert";
 import { usePathname, useRouter } from "next/navigation";
-
-
 
 export default function Sidebar() {
   const path = usePathname();
@@ -36,27 +34,30 @@ export default function Sidebar() {
     });
   };
   return (
-    <aside className="w-20 md:w-64 bg-white p-4 flex flex-col items-center gap-4 border-l border-primary">
+    <aside className="w-20 md:w-64 bg-white p-4 flex flex-col items-center gap-4 border-l  border-secondery">
       <Link href="/" >
-      <Image src={"/logo/fj-logo.png"} width={40} height={40} alt="logo" />
+        <Image src={"/images/dog-face-svgrepo-com 1.png"} width={40} height={40} alt="logo" />
+
       </Link>
 
-      <nav className="flex flex-col justify-between h-full w-full text-sm mt-12 text-cream">
+      <nav className="flex flex-col justify-between rounded-t-full h-full w-full text-sm mt-12 text-cream">
         <div className="flex flex-col gap-4">
-          <SidebarItem icon={<CiHome className="w-8 h-8" />} label="پیشخوان" href="/p-admin/dashboard" />
-          <SidebarItem icon={<CiVideoOn className="w-8 h-8" />} label="دوره‌ها" href="/p-admin/courses" />
-          <SidebarItem icon={<CiMicrophoneOn className="w-8 h-8" />} label="پادکست‌ها" href="/p-admin/podcasts" />
-          <SidebarItem icon={<CiFileOn className="w-8 h-8" />} label="مقالات" href="/p-admin/posts" />
+          <SidebarItem icon={<CiUser className="w-8 h-8" />} label="حساب کاربری" href="/p-admin/dashboard" />
+          <SidebarItem icon={<CiShoppingBasket className="w-8 h-8" />} label="همه محصولات" href="/p-admin/products" />
+          <SidebarItem icon={<CiAt  className="w-8 h-8" />} label="برند" href="/p-admin/brands" />
+          <SidebarItem icon={<CiBoxList className="w-8 h-8" />} label="دسته بندی" href="/p-admin/product-category" />
           <SidebarItem icon={<CiHeadphones className="w-8 h-8" />} label="پشتیبانی" href="/p-admin/tickets" />
-          <SidebarItem icon={<CiChat2 className="w-8 h-8" />} label="نظرات" href="/p-admin/comments" />
-          <SidebarItem icon={<CiDiscount1 className="w-8 h-8" />} label="کد تخفیف" href="/p-admin/discount" />
+          <SidebarItem icon={<CiChat2 className="w-8 h-8" />} label="نظرات من" href="/p-admin/comments" />
         </div>
         <div className="flex flex-col gap-4">
-          <SidebarItem icon={<CiUser className="w-8 h-8" />} label=" کاربران" href="/p-admin/users" />
+          <SidebarItem icon={<CiDiscount1 className="w-8 h-8" />} label="کد تخفیف" href="/p-admin/discountes" />
           <div onClick={logoutHandler}>
-            <SidebarItem icon={<CiLogout className="w-8 h-8" />} label="خروج" href={"/p-admin"} />
+            <SidebarItem
+              icon={<CiLogout className="w-8 h-8" />}
+              label="خروج"
+              onClick={logoutHandler}
+            />
           </div>
-
         </div>
       </nav>
     </aside>

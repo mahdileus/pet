@@ -7,7 +7,7 @@ const links = [
   { name: "صفحه اصلی", path: "/" },
   { name: "فروشگاه", path: "/shop" },
   { name: "مقالات", path: "/web-design" },
-  { name: "درباره ما", path: "/programing" },
+  { name: "درباره ما", path: "/about-us" },
   { name: "تماس با ما", path: "/contact-us" },
 ];
 

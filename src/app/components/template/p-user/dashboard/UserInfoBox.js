@@ -51,7 +51,7 @@ export default function UserInfoBox({ user }) {
                 {fields.map((item, i) => (
                     <div
                         key={i}
-                        className="flex flex-col bg-gray-50 w-full p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
+                        className="flex flex-col p-4 w-full bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
                     >
                         <div className="flex items-center gap-2 mb-1">
                             <item.icon size={24} className="text-green-500" />
