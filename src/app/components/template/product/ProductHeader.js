@@ -30,7 +30,7 @@ export default function ProductHeader({ product }) {
 
 
         {/* محتوا – سمت چپ */}
-        <div className="w-full order-1 lg:order-2 flex flex-col gap-7">
+        <div className="w-full order-2 lg:order-2 flex flex-col gap-7">
 
           {/* عنوان + قلب */}
           <div className="flex items-start justify-between gap-4">
@@ -169,7 +169,7 @@ export default function ProductHeader({ product }) {
           </div>
         </div>
         {/* گالری – سمت راست */}
-        <div className="w-full order-2 border-green-500 lg:order-1 flex justify-center">
+        <div className="w-full order-1 border-green-500 lg:order-1 flex justify-center">
           <div className="w-full max-w-[520px]">
             <ProductGallery
               images={[product.thumbnail, ...(product.gallery || [])]}

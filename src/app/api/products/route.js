@@ -9,6 +9,8 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 import slugify from "slugify";
+import mongoose from "mongoose";
+
 
 // تنظیمات آپلود
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
@@ -136,6 +138,10 @@ export async function POST(request) {
 }
 
 // ===================== GET - لیست محصولات (عمومی + فیلتر پیشرفته) =====================
+// app/api/products/route.js;
+
+
+
 export async function GET(request) {
   try {
     await connectToDB();
@@ -144,52 +150,52 @@ export async function GET(request) {
     const page = Math.max(1, Number(searchParams.get("page") || 1));
     const limit = Math.min(50, Math.max(1, Number(searchParams.get("limit") || 20)));
 
-    const filter = { publishStatus: "published" }; // فقط منتشر شده‌ها
+    const filter = { publishStatus: "published" };
 
-    // فیلترها
-    if (searchParams.get("category")) filter.category = searchParams.get("category");
-    if (searchParams.get("brand")) filter.brand = searchParams.get("brand");
-    if (searchParams.get("tag")) filter.tags = searchParams.get("tag");
-    if (searchParams.get("inStock")) filter.status = "in_stock";
-
-    // جستجو
-    if (searchParams.get("q")) {
-      const q = searchParams.get("q");
-      filter.$or = [
-        { title: { $regex: q, $options: "i" } },
-        { shortDescription: { $regex: q, $options: "i" } },
-        { tags: { $regex: q, $options: "i" } },
-      ];
-    }
-
-    // فیلتر قیمت (با در نظر گرفتن finalPrice)
-    if (searchParams.get("min") || searchParams.get("max")) {
-      filter["$expr"] = {};
-      if (searchParams.get("min")) {
-        filter["$expr"]["$gte"] = ["$finalPrice", Number(searchParams.get("min"))];
+    /* =========================
+       دسته‌بندی (slug)
+    ========================= */
+    const categorySlug = searchParams.get("category");
+    if (categorySlug) {
+      const category = await Category.findOne({ slug: categorySlug }).lean();
+      if (!category) {
+        return NextResponse.json({
+          success: true,
+          products: [],
+          pagination: { total: 0, pages: 0, page, limit },
+        });
       }
-      if (searchParams.get("max")) {
-        filter["$expr"]["$lte"] = ["$finalPrice", Number(searchParams.get("max"))];
+      filter.category = category._id;
+    }
+
+    /* =========================
+       برند (ObjectId یا slug) — امن
+    ========================= */
+    const brandValue = searchParams.get("brand");
+    if (brandValue) {
+      const brandQuery = mongoose.Types.ObjectId.isValid(brandValue)
+        ? { _id: brandValue }
+        : { slug: brandValue };
+
+      const brand = await Brand.findOne(brandQuery).lean();
+      if (brand) {
+        filter.brand = brand._id;
       }
     }
 
-    const sort = {};
-    const sortBy = searchParams.get("sort") || "createdAt";
-    const order = searchParams.get("order") === "asc" ? 1 : -1;
+    /* =========================
+       مرتب‌سازی (فعلاً فقط جدیدترین)
+    ========================= */
+    const sort = { createdAt: -1 };
 
-    switch (sortBy) {
-      case "price": sort["finalPrice"] = order; break;
-      case "sold": sort.totalSold = -1; break;
-      case "rating": sort["rating.average"] = -1; break;
-      case "newest": sort.createdAt = -1; break;
-      default: sort.createdAt = -1;
-    }
-
+    /* =========================
+       کوئری اصلی
+    ========================= */
     const [products, total] = await Promise.all([
       Product.find(filter)
-        .populate("category", "title slug ancestors")
+        .populate("category", "title slug")
         .populate("brand", "name slug logo")
-        .select("-longDescription -comments -__v")
+        .select("title slug price thumbnail badges status")
         .sort(sort)
         .skip((page - 1) * limit)
         .limit(limit)
@@ -209,7 +215,15 @@ export async function GET(request) {
       },
     });
   } catch (error) {
-    console.error("Products fetch error:", error);
-    return NextResponse.json({ error: "خطای سرور" }, { status: 500 });
+
+  console.error("Products fetch error:", error);
+  return NextResponse.json(
+    { success: false, error: error.message, stack: error.stack },
+    { status: 500 }
+  );
+
+
+
+
   }
 }
