@@ -26,7 +26,7 @@ export default function LatestProduct({ products }) {
                     </span>
 
                     <Link
-                        href="/posts"
+                        href="/products"
                         className="flex group justify-start items-center py-2 px-2 transition-all  rounded-full gap-6 w-41  mt-4"
                     >
                         <p className="font-yekan-bakh text-base font-semibold text-secondery group-hover:text-green-600"> مشاهده همه</p>

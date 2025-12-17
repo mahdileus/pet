@@ -133,7 +133,7 @@ export default function ShopArchive({ initialCategorySlug = null }) {
     "همه محصولات";
 
   return (
-    <div className="min-h-screen font-yekan-bakh py-10">
+    <div className="min-h-screen font-yekan-bakh bg-white container rounded-2xl shadow-md py-10">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
           {currentCategoryTitle}
